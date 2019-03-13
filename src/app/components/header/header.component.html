@@ -1,0 +1,24 @@
+<nav class="navbar is-primary is-fixed-top">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#">
+      <img src="../../../assets/img/dog.png" alt="company logo">
+    </a>
+    <span class="navbar-item navbar-brand-name">Huellas</span>
+    <div class="navbar-burger burger" data-target="navMenuColorwarning" (click)="isActive = !isActive">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div id="navMenuColorwarning" class="navbar-menu" [ngClass]="{'is-active': isActive}">
+    <div class="navbar-start">
+      <a class="navbar-item" href="#">
+        Home
+      </a>
+      <a class="navbar-item" href="#">
+        Otro
+      </a>
+    </div>
+  </div>
+</nav>

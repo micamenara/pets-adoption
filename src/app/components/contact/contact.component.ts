@@ -9,16 +9,16 @@ export class ContactComponent implements OnInit {
   name: string;
   email: string;
   message: string;
+  isModalActive = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-   /**
-   * Process the form.
-   */
-  processForm() {
+  toggleModal() {
+    this.isModalActive = !this.isModalActive;
   }
+
 
 }

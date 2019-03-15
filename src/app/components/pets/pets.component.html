@@ -1,0 +1,40 @@
+<section class="hero is-medium is-bold is-link">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Mascotas en adopción</h1>
+      <h2 class="subtitle">
+        Podrás encontrar mascotas que están esperando ser adoptadas
+      </h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-fluid">
+    <div class="box" *ngFor="let pet of pets">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-128x128">
+            <img class="is-rounded"
+              src="{{pet.image}}"
+              alt="Image"
+            />
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{pet.name}}</strong>
+              <br />
+              Descripción de la mascota
+              <br />
+              <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            </p>
+            <a href="/contact" class="button is-primary">Contactar</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+</section>
+

@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 import { UserService } from './services/user.service';
+import { PetsComponent } from './components/pets/pets.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserService } from './services/user.service';
     FooterComponent,
     HeroComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    PetsComponent
   ],
   imports: [
     BrowserModule,

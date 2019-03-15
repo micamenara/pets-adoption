@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { PetsComponent } from './components/pets/pets.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,11 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: './modules/users/users.module#UsersModule'
-  }
+  },
+  {
+    path: 'pets',
+    component: PetsComponent
+  },
 ];
 
 @NgModule({

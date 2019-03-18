@@ -1,11 +1,14 @@
-<section class="hero is-medium is-bold is-link">
+<section class="hero is-bold is-link" [ngClass]="{
+    'is-fullheight-with-navbar': isFullHeight,
+    'is-medium': !isFullHeight,
+    'has-image': hasImage}" class="{{imageClass}}">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        Formulario
+        {{ title }}
       </h1>
       <h2 class="subtitle">
-        Completá tus datos para contactar al publicante
+        {{ subtitle }}
       </h2>
     </div>
   </div>

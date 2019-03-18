@@ -9,6 +9,9 @@ import { UserComponent } from './user/user.component';
     CommonModule,
     UsersRoutingModule,
   ],
-  declarations: [UserListComponent, UserComponent],
+  declarations: [
+    UserListComponent,
+    UserComponent,
+  ]
 })
 export class UsersModule { }

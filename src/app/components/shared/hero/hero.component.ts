@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-hero',
@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hero.component.scss']
 })
 export class HeroComponent implements OnInit {
+  @Input() imageClass: string;
+  @Input() isFullHeight: boolean;
+  @Input() title: string;
+  @Input() subtitle: string;
+  hasImage: boolean;
 
   constructor() { }
 
   ngOnInit() {
+    this.hasImage = this.imageClass.length > 0;
+    this.isFullHeight = this.isFullHeight || false;
   }
 
 }

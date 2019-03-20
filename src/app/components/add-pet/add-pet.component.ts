@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  selector: 'app-add-pet',
+  templateUrl: './add-pet.component.html',
+  styleUrls: ['./add-pet.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class AddPetComponent implements OnInit {
   name: string;
   email: string;
   message: string;

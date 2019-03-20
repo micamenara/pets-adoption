@@ -1,24 +1,18 @@
-<section class="hero is-bold is-link users-img is-medium">
-<div class="hero-body">
-  <div class="container">
-    <h1 class="title">Usuarios</h1>
-  </div>
-</div>
-</section>
-
+<app-hero [title]="'Usuarios'" [isFullHeight]="false" [imageClass]="'users-img'">
+</app-hero>
 <section class="section">
   <div class="container">
     <div class="columns is-multiline">
       <!-- loop over our users and give them each a card -->
-      <div class="column is-3" *ngFor="let user of (users | async)">
+      <div class="column is-one-third is-full-mobile is-one-third-tablet is-one-fifth-desktop" *ngFor="let user of (users | async)">
         <div class="card">
           <div class="card-image">
             <figure class="image is-4by3">
-              <img src="https://picsum.photos/600/600?image=823" alt="Placeholder image">
+              <img [src]="user.avatar_url" alt="Placeholder image">
             </figure>
           </div>
           <div class="card-content">
-            {{ user.name }}
+            <a routerLink="/users/{{ user.login }}">{{ user.login }}</a>
           </div>
         </div>
       </div>

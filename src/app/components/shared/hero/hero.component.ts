@@ -15,7 +15,7 @@ export class HeroComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.hasImage = this.imageClass.length > 0;
+    this.hasImage = this.imageClass && this.imageClass.length > 0;
     this.isFullHeight = this.isFullHeight || false;
   }
 

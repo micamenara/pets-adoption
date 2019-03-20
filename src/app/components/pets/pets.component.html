@@ -4,9 +4,14 @@
 
 <section class="section">
   <div class="container is-fluid">
-    <h1 class="title">Filtros de búsqueda</h1>
     <div class="columns is-multiline">
-      <div class="field column is-full-mobile is-one-third-desktop">
+      <h1 class="title column is-full-mobile is-two-thirds-tablet">Filtros de búsqueda</h1>
+      <div class="column is-full-mobile is-one-third-tablet">
+        <a [routerLink]="'add-pet'" class="button is-primary is-outlined is-fullwidth">Cargar mascota</a>
+      </div>
+    </div>
+    <div class="columns is-multiline is-vertical-center">
+      <div class="field column is-full-mobile is-one-quarter-desktop">
         <label class="label">Tipo</label>
         <div class="control">
           <div class="select">
@@ -17,7 +22,7 @@
           </div>
         </div>
       </div>
-      <div class="field column is-full-mobile is-one-third-desktop">
+      <div class="field column is-full-mobile is-one-quarter-desktop">
         <label class="label">Tamaño</label>
         <div class="control">
           <div class="select">
@@ -29,7 +34,7 @@
           </div>
         </div>
       </div>
-      <div class="field column is-full-mobile is-one-third-desktop">
+      <div class="field column is-full-mobile is-one-quarter-desktop">
         <label class="label">Zona</label>
         <div class="control">
           <div class="select">
@@ -39,6 +44,9 @@
             </select>
           </div>
         </div>
+      </div>
+      <div class="field column is-full-mobile is-one-quarter-desktop">
+        <button class="button is-primary">Buscar</button>
       </div>
     </div>
     <div class="columns is-multiline">
@@ -62,7 +70,7 @@
                   <br />
                   <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
                 </p>
-                <a href="/contact" class="button is-primary">Contactar</a>
+                <a [routerLink]="'contact'" class="button is-primary">Contactar</a>
               </div>
             </div>
           </article>

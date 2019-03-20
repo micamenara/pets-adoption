@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { PetsComponent } from './components/pets/pets.component';
+import { AddPetComponent } from './components/add-pet/add-pet.component';
 
 const routes: Routes = [
   {
@@ -11,17 +12,22 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'contact',
-    component: ContactComponent
-  },
-  {
     path: 'users',
     loadChildren: './modules/users/users.module#UsersModule'
   },
   {
     path: 'pets',
+    pathMatch: 'full',
     component: PetsComponent
   },
+  {
+    path: 'pets/add-pet',
+    component: AddPetComponent
+  },
+  {
+    path: 'pets/contact',
+    component: ContactComponent
+  }
 ];
 
 @NgModule({

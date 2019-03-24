@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeroComponent implements OnInit {
   @Input() imageClass: string;
   @Input() isFullHeight: boolean;
+  @Input() isMedium: boolean;
   @Input() title: string;
   @Input() subtitle: string;
   hasImage: boolean;
@@ -17,6 +18,7 @@ export class HeroComponent implements OnInit {
   ngOnInit() {
     this.hasImage = this.imageClass && this.imageClass.length > 0;
     this.isFullHeight = this.isFullHeight || false;
+    this.isMedium = this.isMedium || false;
   }
 
 }

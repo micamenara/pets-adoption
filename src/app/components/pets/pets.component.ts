@@ -14,7 +14,7 @@ export class PetsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.pets = this._petService.gePets();
+    this.pets = this._petService.getPets();
   }
 
 }

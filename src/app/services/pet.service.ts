@@ -25,7 +25,13 @@ export class PetService {
 
   constructor() { }
 
-  gePets() {
+  getPets() {
     return this.pets;
+  }
+
+  getUserPets(userId) {
+    let pets = [];
+    pets.push(this.pets[0]);
+    return pets;
   }
 }

@@ -1,9 +1,18 @@
-<app-hero [title]="'Perfil del usuario'"></app-hero>
+<app-hero [title]="user?.login"></app-hero>
+<div class="tabs is-boxed">
+  <ul>
+    <li><a>Perfil</a></li>
+    <li class="is-active"><a>Mascotas publicadas</a></li>
+  </ul>
+</div>
 <section class="section">
-  <div class="container columns is-fluid">
-    <div class="card column is-full-mobile is-one-third-desktop">
+  <div class="columns is-fluid">
+<!--
+<section class="section">
+  <div class="columns is-fluid">
+    <div class="card column is-full-mobile is-half-tablet is-one-third-desktop">
       <div class="card-image">
-        <figure class="image is-4by3">
+        <figure class="image is-5by3">
           <img [src]="user?.avatar_url" alt="Placeholder image" />
         </figure>
       </div>
@@ -25,6 +34,36 @@
           <br />
           <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
         </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<section class="section">
+  <div class="columns is-fluid is-multiline">
+    <div class="column is-full-mobile is-one-third-desktop" *ngFor="let pet of pets">
+      <div class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <img class="is-rounded"
+                src="{{pet.image}}"
+                alt="Image"
+              />
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>{{pet.name}}</strong>
+                <br />
+                Descripción de la mascota
+                <br />
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </p>
+              <a class="button is-primary">Adoptada</a>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </div>

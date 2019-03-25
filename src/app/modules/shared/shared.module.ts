@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../../components/shared/header/header.component';
 import { HeroComponent } from '../../components/shared/hero/hero.component';
 import { FooterComponent } from '../../components/shared/footer/footer.component';
+import { LoginComponent } from '../../components/shared/login/login.component';
 
 @NgModule({
   imports: [
@@ -13,12 +14,14 @@ import { FooterComponent } from '../../components/shared/footer/footer.component
   declarations: [
     HeaderComponent,
     HeroComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   exports: [
     HeaderComponent,
     HeroComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ]
 })
 export class SharedModule { }

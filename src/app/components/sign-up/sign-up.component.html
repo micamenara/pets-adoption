@@ -1,0 +1,102 @@
+<app-hero [title]="'Crear cuenta'"></app-hero>
+<section class="section">
+  <div class="container is-fluid">
+    <!-- form -->
+    <form (ngSubmit)="processForm()">
+
+      <!-- name -->
+      <div class="field">
+        <input
+          type="text"
+          name="name"
+          class="input"
+          placeholder="Nombre"
+          [(ngModel)]="user.name"
+          required
+          #nameInput="ngModel">
+      </div>
+
+      <!-- lastname -->
+      <div class="field">
+        <input
+          type="text"
+          name="lastname"
+          class="input"
+          placeholder="Apellido"
+          [(ngModel)]="user.lastname"
+          required
+          #nameInput="ngModel">
+      </div>
+
+      <!-- image -->
+      <div class="field">
+        <div class="file is-link">
+          <label class="file-label">
+            <input class="file-input" type="file" [(ngModel)]="user.image" name="resume">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Foto
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+      <!-- email -->
+      <div class="field">
+        <input
+          type="email"
+          name="email"
+          class="input"
+          placeholder="Email"
+          [(ngModel)]="user.email"
+          required
+          email
+          #emailInput="ngModel">
+      </div>
+
+      <!-- password -->
+      <div class="field">
+        <input
+          type="password"
+          pattern=".{6,}"
+          name="password"
+          class="input"
+          placeholder="Password"
+          [(ngModel)]="user.password"
+          required
+          #nameInput="ngModel">
+      </div>
+
+      <!-- tel -->
+      <div class="field">
+        <input
+          type="text"
+          name="tel"
+          class="input"
+          placeholder="Tel"
+          [(ngModel)]="user.tel"
+          required
+          email
+          #emailInput="ngModel">
+      </div>
+
+      <!-- biography -->
+      <div class="field">
+        <textarea
+          class="textarea"
+          name="biography"
+          placeholder="Escribe tu biografía"
+          [(ngModel)]="user.biography"
+          #messageInput="ngModel"></textarea>
+      </div>
+
+      <button type="submit" class="button is-link is-outlined">Crear</button>
+
+    </form>
+    <!-- //form -->
+  </div>
+</section>
+

@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { PetsComponent } from './components/pets/pets.component';
 import { AddPetComponent } from './components/add-pet/add-pet.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path: 'pets/contact',
     component: ContactComponent
+  },
+  {
+    path: 'sign-up',
+    pathMatch: 'full',
+    component: SignUpComponent
   }
 ];
 

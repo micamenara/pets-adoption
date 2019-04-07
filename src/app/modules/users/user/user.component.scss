@@ -1,9 +1,19 @@
 .section {
   padding: 1.5rem;
+
+  &[hidden] {
+    display: none;
+  }
 }
+
 .image img.is-rounded {
   object-fit: cover;
   object-position: 50% 50%;
   width: 64px;
   height: 64px;
+}
+
+i {
+  color: #00d1b2;
+  font-size: 25px;
 }

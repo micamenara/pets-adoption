@@ -5,15 +5,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl = 'https://api.github.com/users';
+  apiUrl = 'http://localhost:3000/api/user';
 
   constructor(private _http: HttpClient) {}
 
   getUsers() {
-    return this._http.get(`${this.apiUrl}?per_page=10`);
+    return this._http.get(`${this.apiUrl}`);
   }
 
-  getUser(username: string) {
-    return this._http.get(`${this.apiUrl}/${username}`);
+  getUser(userId: string) {
+    return this._http.get(`${this.apiUrl}/${userId}`);
   }
 }

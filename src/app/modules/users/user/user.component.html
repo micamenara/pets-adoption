@@ -1,44 +1,38 @@
-<app-hero [title]="user?.login"></app-hero>
+<app-hero [title]="userFullName"></app-hero>
 <div class="tabs is-boxed">
   <ul>
-    <li><a>Perfil</a></li>
-    <li class="is-active"><a>Mascotas publicadas</a></li>
+    <li [ngClass]="{'is-active': tabs.profile}" (click)="openTab('profile')"><a>Perfil</a></li>
+    <li [ngClass]="{'is-active': tabs.pets}" (click)="openTab('pets')"><a>Mascotas publicadas</a></li>
   </ul>
 </div>
-<section class="section">
-  <div class="columns is-fluid">
-<!--
-<section class="section">
+<section class="section is-fullheight" [hidden]="!tabs.profile">
   <div class="columns is-fluid">
     <div class="card column is-full-mobile is-half-tablet is-one-third-desktop">
       <div class="card-image">
         <figure class="image is-5by3">
-          <img [src]="user?.avatar_url" alt="Placeholder image" />
+          <img [src]="user?.image" alt="Placeholder image" />
         </figure>
       </div>
       <div class="card-content">
         <div class="media">
           <div class="media-left">
-            <figure class="image is-48x48">
-              <img [src]="user?.avatar_url" alt="Placeholder image" />
-            </figure>
+            <i class="fas fa-paw"></i>
           </div>
           <div class="media-content">
-            <p class="title is-4">{{ user?.login }}</p>
+            <p class="title is-4">{{ user?.name }} {{ user?.lastname }}</p>
           </div>
         </div>
 
         <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-          iaculis mauris. <a>{{ user?.login }}</a>.
+          {{ user?.bio }}
           <br />
           <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
         </div>
       </div>
     </div>
   </div>
-</section> -->
-<section class="section">
+</section>
+<section class="section is-fullheight" [hidden]="!tabs.pets">
   <div class="columns is-fluid is-multiline">
     <div class="column is-full-mobile is-one-third-desktop" *ngFor="let pet of pets">
       <div class="box">
@@ -64,6 +58,11 @@
             </div>
           </div>
         </article>
+      </div>
+    </div>
+    <div *ngIf="!pets">
+      <div class="notification is-primary">
+        No hay mascotas publicadas.
       </div>
     </div>
   </div>

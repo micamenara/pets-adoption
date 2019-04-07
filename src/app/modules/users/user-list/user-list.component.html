@@ -4,15 +4,15 @@
   <div class="container">
     <div class="columns is-multiline">
       <!-- loop over our users and give them each a card -->
-      <div class="column is-one-third is-full-mobile is-one-third-tablet is-one-fifth-desktop" *ngFor="let user of (users | async)">
+      <div class="column is-one-third is-full-mobile is-one-third-tablet is-one-fifth-desktop" *ngFor="let user of users">
         <div class="card">
           <div class="card-image">
             <figure class="image is-4by3">
-              <img [src]="user.avatar_url" alt="Placeholder image">
+              <img [src]="user.image" alt="Placeholder image">
             </figure>
           </div>
           <div class="card-content">
-            <a routerLink="/users/{{ user.login }}">{{ user.login }}</a>
+            <a routerLink="/users/{{ user._id }}">{{ user.name }} {{ user.lastname }}</a>
           </div>
         </div>
       </div>

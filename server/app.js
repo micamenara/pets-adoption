@@ -35,9 +35,11 @@ app.get('/', (req,res) => {
   res.send("Invalid page");
 });
 
-//Routing all HTTP requests to /user to user controller
-const user_routes = require('./routes/user');
-app.use('/api/user', user_routes);
+//Routing all HTTP requests
+const userRoutes = require('./routes/user');
+const petRoutes = require('./routes/pet');
+app.use('/api/user', userRoutes);
+app.use('/api/pet', petRoutes);
 
 //Listen to port 3000
 app.listen(port, () => {

@@ -6,16 +6,19 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PetService {
-  API = 'http://localhost:3000/api';
+  apiUrl = 'http://localhost:3000/api/pet';
+
   constructor(private _http: HttpClient) {}
 
   getPets(): Observable<any> {
-    return this._http.get('http://localhost:3000/api/pets');
+    return this._http.get(`${this.apiUrl}`);
+  }
+
+  getPet(petId: string) {
+    return this._http.get(`${this.apiUrl}/${petId}`);
   }
 
   getUserPets(userId) {
-    // let pets = [];
-    // pets.push(this.pets[0]);
-    // return pets;
+    return this._http.get(`${this.apiUrl}/user/${userId}`);
   }
 }

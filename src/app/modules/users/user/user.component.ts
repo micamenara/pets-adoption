@@ -32,8 +32,10 @@ export class UserComponent implements OnInit {
           .subscribe(user => {
             this.user = user;
             this.userFullName = `${this.user.name} ${this.user.lastname}`;
-            // this.pets = this._petService.getUserPets(this.user.login);
           });
+      this._petService.getUserPets(this.userId).subscribe(pets => {
+        this.pets = pets;
+      });
     });
   }
 

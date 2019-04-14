@@ -1,19 +1,21 @@
 <section class="section">
   <div class="container is-fluid">
-    <p class="title is-2">Iniciar sesión</p>
-
-    <form>
+    <p class="pacific-primary has-text-primary">Iniciar sesión</p>
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()">
       <div class="field">
         <div class="control">
-          <input class="input is-primary" id="email" type="email" name="email" title="email" placeholder="Email" required autofocus>
+          <input class="input is-primary" id="email" formControlName="email" type="email" name="email" title="email" placeholder="Email" required autofocus>
         </div>
       </div>
       <div class="field">
         <div class="control">
-          <input class="input is-primary" id="password" type="password" name="password" title="password" placeholder="Password" required>
+          <input class="input is-primary" id="password" formControlName="password" type="password" name="password" title="password" placeholder="Contraseña" required>
         </div>
       </div>
-      <button type="submit" class="button is-primary">Login</button>
+      <p *ngIf="invalidCredentials" class="help is-danger">
+        Email o contraseña incorrecta.
+      </p>
+      <button [disabled]="!canLogin" type="submit" class="button is-primary">Login</button>
     </form>
   </div>
 </section>

@@ -13,3 +13,11 @@ time {
 .select, select {
   width: 100%;
 }
+
+.field:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.columns {
+  align-items: flex-end;
+}

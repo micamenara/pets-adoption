@@ -1,0 +1,18 @@
+
+.hero {
+  &.has-image {
+    background-size: cover;
+    background-position: center center;
+    &.home-img {
+      background-image: url('https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80') !important;
+    }
+  }
+}
+
+.title span {
+  font-weight: 300;
+}
+
+.button {
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.42);
+}

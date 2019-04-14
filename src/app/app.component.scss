@@ -1,2 +1,8 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+main {
+  padding-top: 3.25rem;
+  position: relative;
+  min-height: calc(100vh - 168px);
+}

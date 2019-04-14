@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { PetService } from '../../services/pet.service';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -8,6 +10,8 @@ import { FormControl, FormGroup, ValidatorFn, ValidationErrors } from '@angular/
 export class ContactComponent implements OnInit {
   isModalActive: boolean;
   canGenerateContact: boolean;
+  petId: string;
+  title: string;
 
   public contactForm = new FormGroup({
     phone: new FormControl(),
@@ -15,13 +19,25 @@ export class ContactComponent implements OnInit {
     description: new FormControl(),
   });
 
-  constructor() {
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _petService: PetService
+  ) {
    }
 
   ngOnInit() {
     this.isModalActive = false;
     this.canGenerateContact = false;
     this.contactForm.setValidators(this.contactFormValidation());
+
+    this._activatedRoute.queryParams.subscribe(params => {
+      if (params['petId']) {
+        this.petId = params['pet'];
+      }
+      if (params['name']) {
+        this.title = `Formulario de contacto: ${params['name']}`;
+      }
+    });
   }
 
   toggleModal() {

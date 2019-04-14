@@ -27,7 +27,7 @@
         <a class="button is-primary" (click)="petRequests(pet)">Solicitudes</a>
       </div>
       <span *ngIf="pet?.status === 'adopted'" class="tag is-light"
-        >Adoptado</span
+        >Adoptado <i class="fas fa-heart has-text-primary"></i></span
       >
     </div>
   </div>
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<div class="modal" [ngClass]="{ 'is-active': petRequestsActive }">
+<div class="modal modalHuellitas" [ngClass]="{ 'is-active': petRequestsActive }">
   <div class="modal-background" (click)="toggleModalRequest()"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -71,7 +71,7 @@
     </footer>
   </div>
 </div>
-<div class="modal" [ngClass]="{ 'is-active': editPetActive }">
+<div class="modal modalHuellitas" [ngClass]="{ 'is-active': editPetActive }">
   <div class="modal-background" (click)="toggleModalEdit()"></div>
   <div class="modal-card">
     <section class="modal-card-body"></section>

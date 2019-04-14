@@ -1,2 +1,13 @@
-<app-hero [title]="'Bienvenidos!'" [isFullHeight]="true" [imageClass]="'home-img'">
-</app-hero>
+<section class="hero is-bold is-link is-fullheight-with-navbar has-image home-img">
+<div class="hero-body">
+  <div class="container">
+    <h1 class="title">
+      Bienvenidos a <span class="pacific-primary">Huellitas</span>
+    </h1>
+    <h2 class="subtitle">
+      Este sitio se creo con el fin de encontrar hogar a mascotas en situación de calle.
+    </h2>
+    <a class="button is-primary is-inverted is-outlined is-medium" [routerLink]="'pets'">Ver mascotas</a>
+  </div>
+</div>
+</section>

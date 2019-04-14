@@ -1,6 +1,6 @@
 "use strict";
 
-const User = require("../models/user");
+const User = require('../models/user');
 
 const getUser = (req, res) => {
   const userId = req.params.id;
@@ -48,4 +48,18 @@ const createUser = (req, res) => {
   });
 };
 
-module.exports = { getUser, createUser, getAll };
+const logIn = (req, res) => {
+
+  User.find({
+    email: req.body.email,
+    password: req.body.password}, function(err, user) {
+    if (err) {
+      return res.status(500).send({ message: "Error in the request", err });
+    }
+    if (user) {
+      res.send(user);
+    }
+  });
+}
+
+module.exports = { getUser, createUser, getAll, logIn };

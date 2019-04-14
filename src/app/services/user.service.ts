@@ -16,4 +16,11 @@ export class UserService {
   getUser(userId: string) {
     return this._http.get(`${this.apiUrl}/${userId}`);
   }
+
+  login(email: string, password: string) {
+    return this._http.post(`${this.apiUrl}/login`, {
+      email: email,
+      password: password,
+    });
+  }
 }

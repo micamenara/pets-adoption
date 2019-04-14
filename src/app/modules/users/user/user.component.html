@@ -2,9 +2,11 @@
 <div class="tabs is-boxed">
   <ul>
     <li [ngClass]="{'is-active': tabs.profile}" (click)="openTab('profile')"><a>Perfil</a></li>
-    <li [ngClass]="{'is-active': tabs.pets}" (click)="openTab('pets')"><a>Mascotas publicadas</a></li>
+    <li [ngClass]="{'is-active': tabs.published}" (click)="openTab('published')"><a>Publicaciones</a></li>
+    <li [ngClass]="{'is-active': tabs.adopted}" (click)="openTab('adopted')"><a>Adopciones</a></li>
   </ul>
 </div>
+
 <section class="section is-fullheight" [hidden]="!tabs.profile">
   <div class="columns is-fluid">
     <div class="card column is-full-mobile is-half-tablet is-one-third-desktop">
@@ -32,9 +34,13 @@
     </div>
   </div>
 </section>
-<section class="section is-fullheight" [hidden]="!tabs.pets">
+<section class="section is-fullheight" [hidden]="!tabs.published">
+  <app-pets-list [pets]="pets"></app-pets-list>
+</section>
+
+<section class="section is-fullheight" [hidden]="!tabs.adopted">
   <div class="columns is-fluid is-multiline">
-    <div class="column is-full-mobile is-one-third-desktop" *ngFor="let pet of pets">
+    <div class="column is-full-mobile is-one-third-desktop" *ngFor="let pet of adopted">
       <div class="box">
         <article class="media">
           <div class="media-left">
@@ -54,15 +60,14 @@
                 <br />
                 <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
               </p>
-              <a class="button is-primary">Adoptada</a>
             </div>
           </div>
         </article>
       </div>
     </div>
-    <div *ngIf="!pets">
+    <div *ngIf="!adopted?.length">
       <div class="notification is-primary">
-        No hay mascotas publicadas.
+        No hay mascotas adoptadas.
       </div>
     </div>
   </div>

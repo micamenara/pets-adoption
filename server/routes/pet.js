@@ -12,4 +12,8 @@ router.post('/', PetController.createPet);
 router.get('/:id', PetController.getPet);
 router.get('/user/:id', PetController.getUserPets);
 
+// Adopted
+router.put('/:id', PetController.updatePet);
+router.get('/adopted/:id', PetController.getAdoptedPets);
+
 module.exports = router;

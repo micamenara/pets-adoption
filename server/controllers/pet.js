@@ -31,7 +31,7 @@ const getUserPets = (req, res) => {
 };
 
 const getAll = (req, res) => {
-  Pet.find({}, function(err, pets) {
+  Pet.find({status: 'published'}, function(err, pets) {
     if (err) {
       return res.status(500).send({ message: "Error in the request", err });
     }
@@ -53,11 +53,35 @@ const createPet = (req, res) => {
   });
 
   pet.save(function(err) {
-    if (err) {
-      return next(err);
-    }
+    // if (err) {
+    //   return next(err);
+    // }
     res.send("Pet Created successfully");
   });
 };
 
-module.exports = { getPet, createPet, getAll, getUserPets };
+const updatePet = (req, res) => {
+  const petId = req.params.id;
+  Pet.findOneAndUpdate({_id: petId}, req.body, function (err, pet) {
+    if (err) {
+      return res.status(500).send({ message: "Error in the request", err });
+    }
+    if (pet) {
+      res.send("Pet Updated successfully");
+    }
+  });
+};
+
+const getAdoptedPets = (req, res) => {
+  const userAdoptId = req.params.id;
+  Pet.find({userAdoptId: userAdoptId}, function(err, pets) {
+    if (err) {
+      return res.status(500).send({ message: "Error in the request", err });
+    }
+    if (pets) {
+      res.send(pets);
+    }
+  });
+}
+
+module.exports = { getPet, createPet, getAll, getUserPets, updatePet, getAdoptedPets };

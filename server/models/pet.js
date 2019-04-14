@@ -11,6 +11,9 @@ const PetSchema = Schema({
     image: String,
     userId: String,
     status: String,
+    userAdoptId: String,
+    dateAdopt: String,
+    datePublished: String,
 });
 // 1: Centro, 2: Sur, 3: Norte
 

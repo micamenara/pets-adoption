@@ -1,0 +1,14 @@
+.actions {
+  text-align: right;
+
+  .button:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+.modal-card-head, .modal-card-foot {
+  background-color: white;
+}
+
+.image img {
+  height: 100%;
+}

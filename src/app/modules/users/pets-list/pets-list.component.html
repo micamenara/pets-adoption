@@ -1,0 +1,79 @@
+<div class="columns is-fluid is-multiline">
+  <div
+    class="column is-full-mobile is-one-third-desktop"
+    *ngFor="let pet of pets"
+  >
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img class="is-rounded" src="{{ pet.image }}" alt="Image" />
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{ pet.name }}</strong>
+              <br />
+              {{ pet.description }}
+              <br />
+              <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            </p>
+          </div>
+        </div>
+      </article>
+      <div *ngIf="pet?.status != 'adopted'" class="actions">
+        <a class="button is-primary" (click)="editPet(pet)">Editar</a>
+        <a class="button is-primary" (click)="petRequests(pet)">Solicitudes</a>
+      </div>
+      <span *ngIf="pet?.status === 'adopted'" class="tag is-light"
+        >Adoptado</span
+      >
+    </div>
+  </div>
+  <div *ngIf="!pets?.length">
+    <div class="notification is-primary">
+      No hay mascotas publicadas.
+    </div>
+  </div>
+</div>
+
+<div class="modal" [ngClass]="{ 'is-active': petRequestsActive }">
+  <div class="modal-background" (click)="toggleModalRequest()"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title pacific-primary has-text-primary">
+        Solicitudes de adopción
+      </p>
+      <button class="delete" aria-label="close" (click)="toggleModalRequest()"></button>
+    </header>
+    <section class="modal-card-body"  *ngFor="let user of users">
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="{{user.image}}" />
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{user.name}} {{user.lastname}}</strong>
+              <br />
+              {{user.bio}}
+            </p>
+          </div>
+          <button class="button is-primary">Dar adopción</button>
+        </div>
+      </article>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button" (click)="toggleModalRequest()">Cancelar</button>
+    </footer>
+  </div>
+</div>
+<div class="modal" [ngClass]="{ 'is-active': editPetActive }">
+  <div class="modal-background" (click)="toggleModalEdit()"></div>
+  <div class="modal-card">
+    <section class="modal-card-body"></section>
+  </div>
+</div>

@@ -2,58 +2,50 @@
 <section class="section">
   <div class="container is-fluid">
     <!-- form -->
-    <form (ngSubmit)="processForm()">
 
-      <!-- name -->
+    <form [formGroup]="contactForm" (ngSubmit)="processForm()">
+
+      <!-- phone -->
+      <label class="label">Número de teléfono:</label>
       <div class="field">
         <input
           type="text"
-          name="name"
+          name="phone"
           class="input"
-          placeholder="Your Name"
-          [(ngModel)]="name"
-          required
-          minlength="3"
-          #nameInput="ngModel">
-
-        <div class="help is-error" *ngIf="nameInput.invalid && nameInput.dirty">
-          Name is required and needs to be at least 3 characters long.
-        </div>
+          formControlName="phone"
+          placeholder="0341-5081933"
+          required>
+        <p *ngIf="!contactForm.controls.phone.valid" class="help is-danger">
+          Número de teléfono obligatorio.
+        </p>
       </div>
 
-      <!-- email -->
+      <!-- Facebook -->
+      <label class="label">Link a perfil de Facebook:</label>
       <div class="field">
         <input
-          type="email"
-          name="email"
+          type="text"
+          name="fb"
           class="input"
-          placeholder="Your Email"
-          [(ngModel)]="email"
-          required
-          email
-          #emailInput="ngModel">
-
-        <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
-          Needs to be a valid email.
-        </div>
+          formControlName="fb"
+          placeholder="facebook.com/maria.martinez">
       </div>
 
       <!-- message -->
+      <label class="label">Describe porque estas interesado en adoptar esta mascota:</label>
       <div class="field">
         <textarea
           class="textarea"
           name="message"
-          placeholder="What's on your mind?"
-          [(ngModel)]="message"
           required
-          #messageInput="ngModel"></textarea>
-
-          <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
-            Your message is required!
-          </div>
+          formControlName="description">
+        </textarea>
+        <p *ngIf="!contactForm.controls.description.valid" class="help is-danger">
+          Descripción obligatoria.
+        </p>
       </div>
 
-      <button type="submit" (click)="isModalActive = true" class="button is-link is-large">Submit</button>
+      <button [disabled]="!canGenerateContact" type="submit" (click)="isModalActive = true" class="button is-link is-large">Enviar</button>
 
     </form>
     <!-- //form -->

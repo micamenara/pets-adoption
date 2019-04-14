@@ -13,9 +13,11 @@ export class UserComponent implements OnInit {
   userFullName: string;
   user;
   pets;
+  adopted;
   tabs = {
     profile: true,
-    pets: false
+    published: false,
+    adopted: false
   };
 
   constructor(
@@ -36,16 +38,28 @@ export class UserComponent implements OnInit {
       this._petService.getUserPets(this.userId).subscribe(pets => {
         this.pets = pets;
       });
+      this._petService.getUserAdoptedPets(this.userId).subscribe(pets => {
+        this.adopted = pets;
+      });
     });
   }
 
   openTab(tabName) {
-    if (tabName === 'profile') {
-      this.tabs.profile = true;
-      this.tabs.pets = false;
-    } else {
-      this.tabs.profile = false;
-      this.tabs.pets = true;
+    switch (tabName) {
+      case 'profile':
+        this.tabs.profile = true;
+        this.tabs.published = false;
+        this.tabs.adopted = false;
+      break;
+      case 'published':
+        this.tabs.profile = false;
+        this.tabs.published = true;
+        this.tabs.adopted = false;
+      break;
+      case 'adopted':
+        this.tabs.profile = false;
+        this.tabs.published = false;
+        this.tabs.adopted = true;
     }
   }
 

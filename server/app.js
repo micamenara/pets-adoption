@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const config = require('./config/database');
 
 //Connect mongoose to our database
-mongoose.connect(config.database);
+mongoose.connect(config.database, {useNewUrlParser: true } );
 
 //Declaring Port
 const port = 3000;

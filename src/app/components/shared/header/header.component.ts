@@ -12,20 +12,22 @@ export class HeaderComponent implements OnInit {
   isModalActive = false;
   user: IUser;
   constructor(
-    private _userService: UserService
+    private _userService: UserService,
   ) { }
 
   ngOnInit() {
+    const user = this._userService.getUserLoggedIn();
+    this.user = user || null;
     this.isActive = false;
-    if (this._userService.getUserLoggedIn()) {
-      this.user = this._userService.getUserLoggedIn();
-    } else {
-      this.user = null;
-    }
   }
 
   toggleModal() {
     this.isModalActive = !this.isModalActive;
+  }
+
+  logOut() {
+    this._userService.logOut();
+    window.location.reload();
   }
 
 }

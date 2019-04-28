@@ -28,10 +28,16 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.scss",
               "./node_modules/@fortawesome/fontawesome-free/css/all.css",
-              "./node_modules/bulma/css/bulma.css"
+              "./node_modules/bulma/css/bulma.css",
+              "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules",
+                "node_modules/bulma/sass/utilities"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

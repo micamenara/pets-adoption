@@ -1,2 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
 @import url('./styles/index.scss');
+@import 'initial-variables';
+@import 'functions';
+
+// Brand colors
+$pink: #E91E63;
+$blue: #00bcd4;
+
+// Update Bulma's global variables
+$primary: $blue;
+$link: $pink;
+
+
+.hero {
+  background-color: transparent;
+  .title {
+    margin-bottom: 0;
+    color: $primary;
+    text-align: center;
+    padding-bottom: 1rem;
+    font-weight: 300;
+    border-bottom: 1px solid;
+  }
+
+  &.is-medium {
+    .hero-body {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  &.has-image {
+    .title,
+    .subtitle{
+      color: $white;
+    }
+  }
+}
+
+.notification {
+  text-align: center;
+  background-color: transparent !important;
+  color: $link;
+  border: 1px solid;
+}
+
+@import 'bulma';

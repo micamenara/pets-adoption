@@ -13,6 +13,14 @@
   height: 64px;
 }
 
-i {
+img {
+  object-fit: cover;
+}
+
+.card-content i {
   font-size: 25px;
+}
+
+.tags {
+  justify-content: flex-end;
 }

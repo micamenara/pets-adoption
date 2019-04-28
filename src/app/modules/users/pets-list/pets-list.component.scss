@@ -5,12 +5,22 @@
     margin-right: 10px;
   }
 }
+
+.tags {
+  justify-content: flex-end;
+  padding-top: 5px;
+  .tag {
+    margin-bottom: 0px;
+  }
+}
+
 .modal-card-head, .modal-card-foot {
   background-color: white;
 }
 
 .image img {
   height: 100%;
+  object-fit: cover;
 }
 
 i {

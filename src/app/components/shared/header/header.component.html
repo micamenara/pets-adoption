@@ -20,16 +20,19 @@
 
     <div class="navbar-end" (click)="isActive = !isActive">
       <div class="navbar-item">
-        <div class="buttons" *ngIf="!user">
-          <a class="button is-primary" [routerLink]="'sign-up'">
-            <strong>Sign up</strong>
+        <div class="buttons">
+          <a *ngIf="!user" class="button is-primary" [routerLink]="'sign-up'">
+            Sign up
           </a>
-          <a class="button" (click)="toggleModal()">
+          <a *ngIf="!user" class="button is-primary" (click)="toggleModal()">
             Log in
           </a>
+          <a *ngIf="user && user._id" class="button is-primary" routerLink="/users/{{ user._id }}">
+            Mi perfil<i class="fas fa-paw"></i></a>
+          <a *ngIf="user && user._id" class="button is-primary" (click)="logOut()">
+            Cerrar sesión
+          </a>
         </div>
-        <a *ngIf="user?.name" class="button is-primary" routerLink="/users/{{ user._id }}">
-          Mi perfil<i class="fas fa-paw"></i></a>
       </div>
     </div>
   </div>

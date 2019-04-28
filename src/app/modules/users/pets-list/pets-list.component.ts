@@ -9,10 +9,12 @@ import { UserService } from '../../../services/user.service';
 export class PetsListComponent implements OnInit {
 
   @Input() pets: Array<any>;
+  @Input() user: string;
 
-  petRequestsActive: boolean;
-  editPetActive: boolean;
-  users: any;
+  public petRequestsActive: boolean;
+  public editPetActive: boolean;
+  public users: any;
+  public currentUser: boolean;
 
   constructor(
     private _userService: UserService
@@ -26,7 +28,15 @@ export class PetsListComponent implements OnInit {
       console.log(users);
       this.users = users;
     });
+
+    this.isCurrentUser();
   }
+
+  isCurrentUser() {
+    const userLogged = this._userService.getUserLoggedIn();
+    this.currentUser = userLogged && userLogged._id === this.user;
+  }
+
   petRequests(pet) {
     this.petRequestsActive = true;
   }

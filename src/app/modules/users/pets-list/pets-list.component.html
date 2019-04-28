@@ -23,16 +23,20 @@
         </div>
       </article>
       <div *ngIf="pet?.status != 'adopted'" class="actions">
-        <a class="button is-primary" (click)="editPet(pet)">Editar</a>
-        <a class="button is-primary" (click)="petRequests(pet)">Solicitudes</a>
+        <a class="button is-primary is-outlined" (click)="editPet(pet)" *ngIf="currentUser">Editar</a>
+        <a class="button is-primary is-outlined" (click)="petRequests(pet)" *ngIf="currentUser">Solicitudes</a>
+        <a [routerLink]="'../../pets/contact'" [queryParams]="{pet: pet._id, name: pet.name}"
+          *ngIf="!currentUser" class="button is-primary is-outlined">Contactar</a>
       </div>
-      <span *ngIf="pet?.status === 'adopted'" class="tag is-light"
-        >Adoptado <i class="fas fa-heart has-text-primary"></i></span
-      >
+      <div class="tags">
+        <span *ngIf="pet?.status === 'adopted'" class="tag is-light">
+          Adoptado <i class="fas fa-heart has-text-primary"></i>
+        </span>
+      </div>
     </div>
   </div>
   <div *ngIf="!pets?.length">
-    <div class="notification is-primary">
+    <div class="notification">
       No hay mascotas publicadas.
     </div>
   </div>

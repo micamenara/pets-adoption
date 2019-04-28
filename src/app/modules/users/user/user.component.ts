@@ -9,12 +9,12 @@ import { PetService } from '../../../services/pet.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  userId: string;
-  userFullName: string;
-  user;
-  pets;
-  adopted;
-  tabs = {
+  public userId: string;
+  public userFullName: string;
+  public user;
+  public pets;
+  public adopted;
+  public tabs = {
     profile: true,
     published: false,
     adopted: false
@@ -27,6 +27,10 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getUser();
+  }
+
+  getUser() {
     this._route.params.subscribe(params => {
       this.userId = params['userId'];
       this._userService
@@ -43,7 +47,6 @@ export class UserComponent implements OnInit {
       });
     });
   }
-
   openTab(tabName) {
     switch (tabName) {
       case 'profile':

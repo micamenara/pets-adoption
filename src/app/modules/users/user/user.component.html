@@ -11,7 +11,7 @@
   <div class="columns is-fluid">
     <div class="card column is-full-mobile is-half-tablet is-one-third-desktop">
       <div class="card-image">
-        <figure class="image is-5by3">
+        <figure class="image is-4by3">
           <img [src]="user?.image" alt="Placeholder image" />
         </figure>
       </div>
@@ -35,7 +35,7 @@
   </div>
 </section>
 <section class="section is-fullheight" [hidden]="!tabs.published">
-  <app-pets-list [pets]="pets"></app-pets-list>
+  <app-pets-list [pets]="pets" [user]="userId"></app-pets-list>
 </section>
 
 <section class="section is-fullheight" [hidden]="!tabs.adopted">
@@ -63,10 +63,15 @@
             </div>
           </div>
         </article>
+        <div class="tags">
+          <span class="tag is-light">
+            <i class="fas fa-heart has-text-primary"></i>
+          </span>
+        </div>
       </div>
     </div>
     <div *ngIf="!adopted?.length">
-      <div class="notification is-primary">
+      <div class="notification">
         No hay mascotas adoptadas.
       </div>
     </div>

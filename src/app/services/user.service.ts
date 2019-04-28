@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/user';
+import { Router } from '@angular/router';
 import { Observable } from '../../../node_modules/rxjs';
 
 @Injectable({
@@ -9,10 +10,11 @@ import { Observable } from '../../../node_modules/rxjs';
 export class UserService {
   apiUrl = 'http://localhost:3000/api/user';
 
-  private isUserLoggedIn: boolean;
+  public isUserLoggedIn: boolean;
   public userLogged: IUser;
-
-  constructor(private _http: HttpClient) {
+  constructor(
+    private _http: HttpClient,
+    private _router: Router) {
     this.isUserLoggedIn = false;
   }
 
@@ -39,5 +41,11 @@ export class UserService {
       email: email,
       password: password,
     });
+  }
+
+  logOut(): any {
+    this.isUserLoggedIn = false;
+    this.userLogged = null;
+    return localStorage.removeItem('currentUser');
   }
 }

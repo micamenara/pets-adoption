@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersModule } from './modules/users/users.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { FileSelectDirective, FileDropDirective, FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +35,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     HttpClientModule,
     UsersModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FileUploadModule
   ],
   providers: [
     UserService

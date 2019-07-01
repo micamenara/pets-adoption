@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user.service';
+import { FileUploader } from 'ng2-file-upload';
+import { FileService } from '../../../services/file.service';
 
 @Component({
   selector: 'app-pets-list',
@@ -8,6 +10,9 @@ import { UserService } from '../../../services/user.service';
 })
 export class PetsListComponent implements OnInit {
 
+  public uploader: FileUploader = new FileUploader({
+    url: 'http://localhost:3000/api/file', itemAlias: 'photo'});
+
   @Input() pets: Array<any>;
   @Input() user: string;
 
@@ -15,9 +20,11 @@ export class PetsListComponent implements OnInit {
   public editPetActive: boolean;
   public users: any;
   public currentUser: boolean;
+  public selectedPet: any;
 
   constructor(
-    private _userService: UserService
+    private _userService: UserService,
+    private _fileService: FileService,
   ) { }
 
   ngOnInit() {
@@ -43,6 +50,7 @@ export class PetsListComponent implements OnInit {
 
   editPet(pet) {
     this.editPetActive = true;
+    this.selectedPet = pet;
   }
 
   toggleModalEdit() {
@@ -51,6 +59,10 @@ export class PetsListComponent implements OnInit {
 
   toggleModalRequest() {
     this.petRequestsActive = !this.petRequestsActive;
+  }
+
+  save() {
+
   }
 
 }

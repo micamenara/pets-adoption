@@ -1,0 +1,7 @@
+.select, select {
+  width: 100%;
+}
+
+.columns .field:not(:last-child) {
+  margin-bottom: 0;
+}

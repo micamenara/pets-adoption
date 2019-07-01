@@ -1,4 +1,3 @@
-
 .image img.is-rounded {
   object-fit: cover;
   object-position: 50% 50%;
@@ -9,6 +8,7 @@
 .title {
   font-weight: 300;
   text-align: center;
+  margin-top: 24px;
 }
 
 time {
@@ -25,4 +25,18 @@ time {
 
 .columns {
   align-items: flex-end;
+}
+
+.container {
+  .pets-header {
+    text-align: center;
+    > a {
+      max-width: 400px;
+      border-bottom: 1px solid;
+
+      i {
+        font-size: 0.8rem;
+      }
+    }
+  }
 }

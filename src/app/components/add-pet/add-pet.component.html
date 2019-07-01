@@ -2,60 +2,82 @@
 <section class="section">
   <div class="container is-fluid">
     <!-- form -->
-    <form (ngSubmit)="processForm()">
-
-      <!-- name -->
+    <form>
       <div class="field">
+        <label class="label">Nombre</label>
         <input
           type="text"
           name="name"
           class="input"
-          placeholder="Your Name"
-          [(ngModel)]="name"
+          [(ngModel)]="pet.name"
           required
-          minlength="3"
           #nameInput="ngModel">
-
-        <div class="help is-error" *ngIf="nameInput.invalid && nameInput.dirty">
-          Name is required and needs to be at least 3 characters long.
-        </div>
       </div>
-
-      <!-- email -->
       <div class="field">
-        <input
-          type="email"
-          name="email"
-          class="input"
-          placeholder="Your Email"
-          [(ngModel)]="email"
-          required
-          email
-          #emailInput="ngModel">
-
-        <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
-          Needs to be a valid email.
-        </div>
-      </div>
-
-      <!-- message -->
-      <div class="field">
+        <label class="label">Descripción</label>
         <textarea
           class="textarea"
-          name="message"
-          placeholder="What's on your mind?"
-          [(ngModel)]="message"
+          name="description"
+          [(ngModel)]="pet.description"
           required
-          #messageInput="ngModel"></textarea>
-
-          <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
-            Your message is required!
-          </div>
+          #descriptionInput="ngModel">
+        </textarea>
       </div>
-
-      <button type="submit" (click)="isModalActive = true" class="button is-primary is-outlined">Publicar</button>
-
+      <!-- image -->
+      <div class="field">
+        <div class="file is-link">
+          <label class="file-label">
+            <input class="file-input" type="file" class="form-control" name="photo"
+              ng2FileSelect [uploader]="uploader" id="photo"/>
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Foto
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="columns is-multiline is-vertical-center">
+        <div class="field column is-full-mobile is-one-quarter-desktop">
+        <label class="label">Tipo</label>
+        <div class="control">
+          <div class="select">
+            <select>
+              <option>Perro</option>
+              <option>Gato</option>
+            </select>
+          </div>
+        </div>
+        </div>
+        <div class="field column is-full-mobile is-one-quarter-desktop">
+          <label class="label">Tamaño</label>
+          <div class="control">
+            <div class="select">
+              <select>
+                <option>Pequeño</option>
+                <option>Mediano</option>
+                <option>Grande</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field column is-full-mobile is-one-quarter-desktop">
+          <label class="label">Zona</label>
+          <div class="control">
+            <div class="select">
+              <select>
+                <option>Centro</option>
+                <option>Zona Norte</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
+    <button style="margin-top: 1rem" class="button is-primary" (click)="processForm()">Guardar</button>
     <!-- //form -->
   </div>
   <div class="modal modalHuellitas" [ngClass]="{ 'is-active' : isModalActive }">

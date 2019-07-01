@@ -4,11 +4,12 @@
 
 <section class="section">
   <div class="container is-fluid">
-    <div class="columns is-multiline">
-      <h1 class="title column is-full-mobile is-two-thirds-tablet">Filtros de búsqueda</h1>
-      <div class="column is-full-mobile is-one-third-tablet">
-        <a [routerLink]="'add-pet'" class="button is-primary is-outlined is-fullwidth">Cargar mascota</a>
-      </div>
+    <div class="pets-header">
+      <a [routerLink]="'add-pet'" class="is-primary is-outlined is-fullwidth">
+        <i class="fas fa-plus"></i>
+        Cargar mascota
+      </a>
+      <h1 class="title">Filtros de búsqueda</h1>
     </div>
     <div class="columns is-multiline is-vertical-center">
       <div class="field column is-full-mobile is-one-quarter-desktop">

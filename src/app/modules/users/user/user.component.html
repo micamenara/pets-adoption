@@ -12,7 +12,7 @@
     <div class="card column is-full-mobile is-half-tablet is-one-third-desktop">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img [src]="user?.image" alt="Placeholder image" />
+          <img *ngIf="user?.image" src="../../../../assets/img/{{ user?.image }}" alt="Placeholder image" />
         </figure>
       </div>
       <div class="card-content">
@@ -28,7 +28,7 @@
         <div class="content">
           {{ user?.bio }}
           <br />
-          <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+          <time>{{user?.createdAt | date: 'shortDate'}} - {{user?.createdAt | date: 'shortTime'}}</time>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
           <div class="media-left">
             <figure class="image is-64x64">
               <img class="is-rounded"
-                src="{{pet.image}}"
+                src="../../../../assets/img/{{pet.image}}"
                 alt="Image"
               />
             </figure>
@@ -58,7 +58,7 @@
                 <br />
                 {{pet.description}}
                 <br />
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                <time datetime="2016-1-1">{{pet.createdAt | date: 'shortDate'}} - {{pet.createdAt | date: 'shortTime'}}</time>
               </p>
             </div>
           </div>

@@ -1,7 +1,9 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IUser } from '../../interfaces/user';
-import { FileUploader } from 'ng2-file-upload';
+import { GeneralService } from '../../services/general.service';
 import { FileService } from '../../services/file.service';
+import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -9,42 +11,42 @@ import { FileService } from '../../services/file.service';
 })
 export class SignUpComponent implements OnInit {
   public user = {} as IUser;
-
-  public uploader: FileUploader = new FileUploader({
-    url: 'http://localhost:3000/api/file', itemAlias: 'photo'});
+  public file;
 
   constructor(
     private _fileService: FileService,
-    private el: ElementRef
+    private _userService: UserService,
+    private _router: Router,
+    private _generalService: GeneralService
   ) { }
 
   ngOnInit() {
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
-    };
   }
+
 
   processForm() {
-    this.processFile();
+    this.file ? this._fileService.uploadFile(this.file).subscribe(val => {
+      this.user.image = val.filename;
+      this.create();
+    }) : this.create();
   }
 
-  processFile() {
-    const inputEl: HTMLInputElement = this.el.nativeElement.querySelector(
-      '#photo'
+  create() {
+    this._userService.create(this.user).subscribe(
+      resp => {
+        this._router.navigate(['/']).then(() => {
+          this._generalService.showMessage('Usuario creado correctamente.');
+        });
+      },
+      err => {
+        this._router.navigate(['/']);
+      }
     );
-    const fileCount: number = inputEl.files.length;
-    const formData = new FormData();
-    if (fileCount > 0) {
-      formData.append('photo', inputEl.files.item(0));
-      this._fileService.uploadFile(formData)
-      .subscribe(
-        success => {
-          // res.json()
-          alert(success._body);
-        },
-        error => alert(error)
-      );
-    }
+  }
+
+  postMethod(files: FileList) {
+    const fileToUpload = files.item(0);
+    this.file = new FormData();
+    this.file.append('file', fileToUpload, fileToUpload.name);
   }
 }

@@ -44,19 +44,20 @@ const getAll = (req, res) => {
 const createPet = (req, res) => {
   const pet = new Pet({
     name: req.body.name,
-    lastname: req.body.lastname,
-    email: req.body.email,
-    password: req.body.password,
-    bio: req.body.bio,
+    description: req.body.description,
+    type: req.body.type,
+    size: req.body.size,
+    status: 'published',
+    district: req.body.district,
     image: req.body.image,
-    tel: req.body.tel
+    userId: req.body.userId,
   });
 
   pet.save(function(err) {
     // if (err) {
     //   return next(err);
     // }
-    res.send("Pet Created successfully");
+    res.send({ message: "Pet Created successfully"});
   });
 };
 
@@ -67,7 +68,7 @@ const updatePet = (req, res) => {
       return res.status(500).send({ message: "Error in the request", err });
     }
     if (pet) {
-      res.send("Pet Updated successfully");
+      res.send({ message: "Pet Updated successfully"});
     }
   });
 };

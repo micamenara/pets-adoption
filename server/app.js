@@ -18,31 +18,20 @@ mongoose.connect(config.database, {useNewUrlParser: true } );
 //Declaring Port
 const port = 3000;
 
-let gfs;
-let storage;
-let upload;
-const conn = mongoose.connection;
-conn.once('open', function () {
-  gfs = Grid(conn.db, mongoose.mongo);
 
-  // Setting up the storage element
-  storage = GridFsStorage({
-    db: gfs.db,
-    filename: (req, file, cb) => {
-      const date = Date.now();
-      cb(null, file.fieldname + '-' + date + '.');
-    },
-    metadata: function (req, file, cb) {
-      cb(null, { originalname: file.originalname });
-    },
-    root: 'ctFiles'
-  });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, './src/assets/img')
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+});
 
-  // Multer configuration for single file uploads
-  upload = multer({
-    storage: storage
-  }).single('photo');
-})
+const upload = multer({ storage: storage });
+
+//will be using this for uplading
+
 
 //Initialize our app variable
 const app = express();
@@ -59,35 +48,9 @@ app.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-app.post('/api/file', (req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      res.json({ error_code: 1, err_desc: err });
-      return;
-    }
-    res.json({ error_code: 0, error_desc: null, file_uploaded: true, image: req.file.filename });
-  });
-});
-
-app.get('/api/file/:filename', (req, res) => {
-  gfs.collection('ctFiles');
-  gfs.files.find({ filename: req.params.filename }).toArray(function (err, files) {
-    if (!files || files.length === 0) {
-      return res.status(404).json({
-        responseCode: 1,
-        responseMessage: "error"
-      });
-    }
-    // create read stream
-    var readstream = gfs.createReadStream({
-      filename: files[0].filename,
-      root: "ctFiles"
-    });
-    // set the proper content type
-    res.set('Content-Type', files[0].contentType)
-    // Return response
-    return readstream.pipe(res);
-  });
+app.post('/api/file', upload.single('file'), function(req, res) {
+  console.log('storage location is ', req.hostname +'/' + req.file.path);
+  return res.send(req.file);
 });
 
 //Routing all HTTP requests

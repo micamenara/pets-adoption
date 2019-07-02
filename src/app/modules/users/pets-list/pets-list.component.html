@@ -7,7 +7,7 @@
       <article class="media">
         <div class="media-left">
           <figure class="image is-64x64">
-            <img class="is-rounded" src="{{ pet.image }}" alt="Image" />
+            <img class="is-rounded" src="../../../../assets/img/{{ pet.image }}" alt="Image" />
           </figure>
         </div>
         <div class="media-content">
@@ -17,7 +17,7 @@
               <br />
               {{ pet.description }}
               <br />
-              <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              <time>{{pet.createdAt | date: 'shortDate'}} - {{pet.createdAt | date: 'shortTime'}}</time>
             </p>
           </div>
         </div>
@@ -55,7 +55,7 @@
       <article class="media">
         <figure class="media-left">
           <p class="image is-64x64">
-            <img src="{{user.image}}" />
+            <img src="./../../../../assets/img/{{user.image}}" />
           </p>
         </figure>
         <div class="media-content">
@@ -110,8 +110,7 @@
         <div class="field">
           <div class="file is-link">
             <label class="file-label">
-              <input class="file-input" type="file" class="form-control" name="photo"
-                ng2FileSelect [uploader]="uploader" id="photo"/>
+              <input class="file-input form-control" type="file" name="photo" id="photo"/>
               <span class="file-cta">
                 <span class="file-icon">
                   <i class="fas fa-upload"></i>

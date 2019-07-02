@@ -43,6 +43,10 @@ export class UserService {
     });
   }
 
+  create(user: IUser) {
+    return this._http.post(`${this.apiUrl}`, user);
+  }
+
   logOut(): any {
     this.isUserLoggedIn = false;
     this.userLogged = null;

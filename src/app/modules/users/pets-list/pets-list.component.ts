@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { FileUploader } from 'ng2-file-upload';
 import { FileService } from '../../../services/file.service';
 
 @Component({
@@ -9,9 +8,6 @@ import { FileService } from '../../../services/file.service';
   styleUrls: ['./pets-list.component.scss']
 })
 export class PetsListComponent implements OnInit {
-
-  public uploader: FileUploader = new FileUploader({
-    url: 'http://localhost:3000/api/file', itemAlias: 'photo'});
 
   @Input() pets: Array<any>;
   @Input() user: string;

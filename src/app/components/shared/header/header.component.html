@@ -13,7 +13,7 @@
 
   <div id="navMenuColorwarning" class="navbar-menu" [ngClass]="{'is-active': isActive}">
     <div class="navbar-start" (click)="isActive = !isActive">
-      <a class="navbar-item" href="#">Home</a>
+      <a class="navbar-item" [routerLink]="''">Home</a>
       <a class="navbar-item" [routerLink]="'pets'">Mascotas</a>
       <a class="navbar-item" [routerLink]="'users'">Usuarios</a>
     </div>

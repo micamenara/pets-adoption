@@ -44,7 +44,7 @@ const createUser = (req, res) => {
     if (err) {
       return next(err);
     }
-    res.send("User Created successfully");
+    res.send({ message: "User Created successfully" });
   });
 };
 

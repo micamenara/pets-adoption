@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
           this._userService.setUserLoggedIn(res[0]);
           this.invalidCredentials = false;
           this.userLogged.emit();
-          this._router.navigate(['']);
+          this._router.navigate(['/']);
           window.location.reload();
         } else {
           this.invalidCredentials = true;

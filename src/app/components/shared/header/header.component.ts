@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { IUser } from '../../../interfaces/user';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   user: IUser;
   constructor(
     private _userService: UserService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -27,7 +28,7 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     this._userService.logOut();
+    this._router.navigate(['/']);
     window.location.reload();
   }
-
 }

@@ -2,7 +2,7 @@
 <section class="section">
   <div class="container is-fluid">
     <!-- form -->
-    <form>
+    <form action="" method="post" enctype="multipart/form-data">
       <div class="field">
         <label class="label">Nombre</label>
         <input
@@ -27,8 +27,7 @@
       <div class="field">
         <div class="file is-link">
           <label class="file-label">
-            <input class="file-input" type="file" class="form-control" name="photo"
-              ng2FileSelect [uploader]="uploader" id="photo"/>
+            <input class="file-input form-control" type="file" name="file" (change)="postMethod($event.target.files)"/>
             <span class="file-cta">
               <span class="file-icon">
                 <i class="fas fa-upload"></i>
@@ -45,9 +44,9 @@
         <label class="label">Tipo</label>
         <div class="control">
           <div class="select">
-            <select>
-              <option>Perro</option>
-              <option>Gato</option>
+            <select [(ngModel)]="pet.type" #typeInput="ngModel" name="type">
+              <option [ngValue]="'dog'">Perro</option>
+              <option [ngValue]="'cat'">Gato</option>
             </select>
           </div>
         </div>
@@ -56,10 +55,10 @@
           <label class="label">Tamaño</label>
           <div class="control">
             <div class="select">
-              <select>
-                <option>Pequeño</option>
-                <option>Mediano</option>
-                <option>Grande</option>
+              <select [(ngModel)]="pet.size" #sizeInput="ngModel" name="size">
+                <option [ngValue]="'small'">Pequeño</option>
+                <option [ngValue]="'medium'">Mediano</option>
+                <option [ngValue]="'big'">Grande</option>
               </select>
             </div>
           </div>
@@ -68,9 +67,9 @@
           <label class="label">Zona</label>
           <div class="control">
             <div class="select">
-              <select>
-                <option>Centro</option>
-                <option>Zona Norte</option>
+              <select [(ngModel)]="pet.district" #districtInput="ngModel" name="district">
+                <option [ngValue]="'center'">Centro</option>
+                <option [ngValue]="'north'">Zona Norte</option>
               </select>
             </div>
           </div>

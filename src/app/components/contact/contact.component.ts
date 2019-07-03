@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { PetService } from '../../services/pet.service';
+import { AdoptionRequestService } from '../../services/adoption-request.service';
+import { IAdoptionRequest } from '../../interfaces/adoptionRequest';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -12,6 +14,7 @@ export class ContactComponent implements OnInit {
   canGenerateContact: boolean;
   petId: string;
   title: string;
+  adoptionRequest = {} as IAdoptionRequest;
 
   public contactForm = new FormGroup({
     phone: new FormControl(),
@@ -21,17 +24,11 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _petService: PetService
+    private _adoptionRequestService: AdoptionRequestService,
+    private _userService: UserService
   ) {
-   }
-
-  ngOnInit() {
-    this.isModalActive = false;
-    this.canGenerateContact = false;
-    this.contactForm.setValidators(this.contactFormValidation());
-
     this._activatedRoute.queryParams.subscribe(params => {
-      if (params['petId']) {
+      if (params['pet']) {
         this.petId = params['pet'];
       }
       if (params['name']) {
@@ -40,11 +37,31 @@ export class ContactComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+    this.isModalActive = false;
+    this.canGenerateContact = false;
+    this.contactForm.setValidators(this.contactFormValidation());
+  }
+
   toggleModal() {
     this.isModalActive = !this.isModalActive;
   }
 
   processForm() {
+    this.adoptionRequest = {
+      ...this.adoptionRequest,
+      description: this.contactForm.controls['description'].value,
+      fblink: this.contactForm.controls['fb'].value,
+      phone: this.contactForm.controls['phone'].value,
+      petId: this.petId,
+      userId: this._userService.getUserLoggedIn()._id
+    };
+    this._adoptionRequestService.createAdoptionRequest(this.adoptionRequest).subscribe(
+      response => {
+      },
+      err => {
+        console.log(err);
+      });
   }
 
   private contactFormValidation(): ValidatorFn {
@@ -60,5 +77,4 @@ export class ContactComponent implements OnInit {
       return;
     };
   }
-
 }

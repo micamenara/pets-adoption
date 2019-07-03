@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { FileService } from '../../../services/file.service';
+import { AdoptionRequestService } from '../../../services/adoption-request.service';
 
 @Component({
   selector: 'app-pets-list',
@@ -14,23 +14,18 @@ export class PetsListComponent implements OnInit {
 
   public petRequestsActive: boolean;
   public editPetActive: boolean;
-  public users: any;
+  public adoptionRequests: any;
   public currentUser: boolean;
   public selectedPet: any;
 
   constructor(
     private _userService: UserService,
-    private _fileService: FileService,
+    private _adoptionRequestService: AdoptionRequestService
   ) { }
 
   ngOnInit() {
     this.petRequestsActive = false;
     this.editPetActive = false;
-
-    this._userService.getUsers().subscribe(users => {
-      console.log(users);
-      this.users = users;
-    });
 
     this.isCurrentUser();
   }
@@ -41,7 +36,10 @@ export class PetsListComponent implements OnInit {
   }
 
   petRequests(pet) {
-    this.petRequestsActive = true;
+    this._adoptionRequestService.getAdoptionRequestByPetId(pet._id).subscribe(adoptionRequests => {
+      this.adoptionRequests = adoptionRequests;
+      this.petRequestsActive = true;
+    });
   }
 
   editPet(pet) {

@@ -51,24 +51,31 @@
       </p>
       <button class="delete" aria-label="close" (click)="toggleModalRequest()"></button>
     </header>
-    <section class="modal-card-body"  *ngFor="let user of users">
+    <section class="modal-card-body"  *ngFor="let request of adoptionRequests">
       <article class="media">
         <figure class="media-left">
           <p class="image is-64x64">
-            <img src="./../../../../assets/img/{{user.image}}" />
+            <img src="./../../../../assets/img/{{request.user.image}}" />
           </p>
         </figure>
         <div class="media-content">
           <div class="content">
             <p>
-              <strong>{{user.name}} {{user.lastname}}</strong>
+              <strong>{{request.user.name}} {{request.user.lastname}}</strong>
               <br />
-              {{user.bio}}
+              {{request.description}}
             </p>
+            <p><strong>Tel:</strong> {{request.phone}}</p>
+            <p *ngIf="request.fblink"><strong>Facebook:</strong> {{request.fblink}} </p>
           </div>
           <button class="button is-primary">Dar adopción</button>
         </div>
       </article>
+    </section>
+    <section class="modal-card-body"  *ngIf="!adoptionRequests?.length">
+      <div class="notification">
+        No hay solicitudes de adopción.
+      </div>
     </section>
     <footer class="modal-card-foot">
       <button class="button" (click)="toggleModalRequest()">Cancelar</button>

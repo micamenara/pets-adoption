@@ -56,8 +56,11 @@ app.post('/api/file', upload.single('file'), function(req, res) {
 //Routing all HTTP requests
 const userRoutes = require('./routes/user');
 const petRoutes = require('./routes/pet');
+const adoptionRequestRoutes = require('./routes/adoptionRequest');
+
 app.use('/api/user', userRoutes);
 app.use('/api/pet', petRoutes);
+app.use('/api/adoption-request', adoptionRequestRoutes);
 
 //Listen to port 3000
 app.listen(port, () => {

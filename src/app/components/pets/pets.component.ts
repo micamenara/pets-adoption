@@ -11,13 +11,11 @@ export class PetsComponent implements OnInit {
 
   constructor(
     private _petService: PetService
-  ) { }
-
-  ngOnInit() {
+  ) {
     this._petService.getPets().subscribe(pets => {
-      console.log(pets);
       this.pets = pets;
     });
   }
 
+  ngOnInit() {}
 }

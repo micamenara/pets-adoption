@@ -29,4 +29,8 @@ export class PetService {
   createPet(pet: any) {
     return this._http.post(`${this.apiUrl}`, pet);
   }
+
+  adoptPet(petId: string, userAdoptId: string) {
+    return this._http.put(`${this.apiUrl}/${petId}/user/${userAdoptId}`, {});
+  }
 }

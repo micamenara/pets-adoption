@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { AdoptionRequestService } from '../../../services/adoption-request.service';
+import { PetService } from '../../../services/pet.service';
+import { GeneralService } from '../../../services/general.service';
 
 @Component({
   selector: 'app-pets-list',
@@ -17,10 +19,14 @@ export class PetsListComponent implements OnInit {
   public adoptionRequests: any;
   public currentUser: boolean;
   public selectedPet: any;
+  public currentPet: any;
+  public userLogged: any;
 
   constructor(
     private _userService: UserService,
-    private _adoptionRequestService: AdoptionRequestService
+    private _adoptionRequestService: AdoptionRequestService,
+    private _petService: PetService,
+    private _generalService: GeneralService
   ) { }
 
   ngOnInit() {
@@ -31,11 +37,12 @@ export class PetsListComponent implements OnInit {
   }
 
   isCurrentUser() {
-    const userLogged = this._userService.getUserLoggedIn();
-    this.currentUser = userLogged && userLogged._id === this.user;
+    this.userLogged = this._userService.getUserLoggedIn() || false;
+    this.currentUser = this.userLogged && this.userLogged._id === this.user;
   }
 
   petRequests(pet) {
+    this.currentPet = pet;
     this._adoptionRequestService.getAdoptionRequestByPetId(pet._id).subscribe(adoptionRequests => {
       this.adoptionRequests = adoptionRequests;
       this.petRequestsActive = true;
@@ -56,7 +63,14 @@ export class PetsListComponent implements OnInit {
   }
 
   save() {
+  }
 
+  giveAdoption(user) {
+    this._petService.adoptPet(this.currentPet._id, user._id).subscribe(
+      resp => {
+        this.petRequestsActive = false;
+        this._generalService.showMessage('Mascota adoptada correctamente.');
+      });
   }
 
 }

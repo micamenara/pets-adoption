@@ -73,6 +73,23 @@ const updatePet = (req, res) => {
   });
 };
 
+const adoptPet = (req, res) => {
+  const petId = req.params.id;
+  const userAdoptId = req.params.userId;
+  const body = {
+    userAdoptId: userAdoptId,
+    status: 'adopted'
+  }
+  Pet.findOneAndUpdate({ _id: petId }, body, function (err, pet) {
+    if (err) {
+      return res.status(500).send({ message: "Error in the request", err });
+    }
+    if (pet) {
+      res.send({ message: "Pet Updated successfully"});
+    }
+  });
+};
+
 const getAdoptedPets = (req, res) => {
   const userAdoptId = req.params.id;
   Pet.find({userAdoptId: userAdoptId}, function(err, pets) {
@@ -85,4 +102,4 @@ const getAdoptedPets = (req, res) => {
   });
 }
 
-module.exports = { getPet, createPet, getAll, getUserPets, updatePet, getAdoptedPets };
+module.exports = { getPet, createPet, getAll, getUserPets, updatePet, adoptPet, getAdoptedPets };

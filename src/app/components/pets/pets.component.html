@@ -50,6 +50,9 @@
         <button class="button is-primary">Buscar</button>
       </div>
     </div>
+    <div class="notification" *ngIf="!userLogged">
+      Para adoptar debe estar registrado.
+    </div>
     <div class="columns is-multiline">
       <div class="column is-full-mobile is-half-tablet is-one-third-desktop" *ngFor="let pet of pets">
         <div class="box">
@@ -72,7 +75,7 @@
                   <br />
                   <time>{{pet.createdAt | date: 'shortDate'}} - {{pet.createdAt | date: 'shortTime'}}</time>
                 </p>
-                <a [routerLink]="'contact'" [queryParams]="{pet: pet._id, name: pet.name}" class="button is-primary is-outlined">Contactar</a>
+                <a *ngIf="userLogged && userLogged._id != pet.userId" [routerLink]="'contact'" [queryParams]="{pet: pet._id, name: pet.name}" class="button is-primary is-outlined">Contactar</a>
               </div>
             </div>
           </article>

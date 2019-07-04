@@ -26,7 +26,7 @@
         <a class="button is-primary is-outlined" (click)="editPet(pet)" *ngIf="currentUser">Editar</a>
         <a class="button is-primary is-outlined" (click)="petRequests(pet)" *ngIf="currentUser">Solicitudes</a>
         <a [routerLink]="'../../pets/contact'" [queryParams]="{pet: pet._id, name: pet.name}"
-          *ngIf="!currentUser" class="button is-primary is-outlined">Contactar</a>
+          *ngIf="userLogged && !currentUser" class="button is-primary is-outlined">Contactar</a>
       </div>
       <div class="tags">
         <span *ngIf="pet?.status === 'adopted'" class="tag is-light">
@@ -68,7 +68,7 @@
             <p><strong>Tel:</strong> {{request.phone}}</p>
             <p *ngIf="request.fblink"><strong>Facebook:</strong> {{request.fblink}} </p>
           </div>
-          <button class="button is-primary">Dar adopción</button>
+          <button class="button is-primary" (click)="giveAdoption(request.user)">Dar adopción</button>
         </div>
       </article>
     </section>

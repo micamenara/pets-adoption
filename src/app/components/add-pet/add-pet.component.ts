@@ -22,7 +22,6 @@ export class AddPetComponent implements OnInit {
     private _router: Router,
     private _generalService: GeneralService
   ) {
-    const userLogged = this._userService.getUserLoggedIn();
     this.pet = {
       name: '',
       description: '',

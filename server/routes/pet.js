@@ -14,6 +14,7 @@ router.get('/user/:id', PetController.getUserPets);
 
 // Adopted
 router.put('/:id', PetController.updatePet);
+router.put('/:id/user/:userId', PetController.adoptPet);
 router.get('/adopted/:id', PetController.getAdoptedPets);
 
 module.exports = router;

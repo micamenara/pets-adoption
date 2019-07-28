@@ -10,6 +10,10 @@ $blue: #00bcd4;
 $primary: $blue;
 $link: $pink;
 
+.required-field {
+  color: $pink;
+  font-size: 0.75rem;
+}
 
 .hero {
   background-color: transparent;

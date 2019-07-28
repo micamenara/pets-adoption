@@ -89,12 +89,12 @@
       <p class="modal-card-title pacific-primary has-text-primary">
         Editar mascota
       </p>
-      <button class="delete" aria-label="close" (click)="toggleModalRequest()"></button>
+      <button class="delete" aria-label="close" (click)="toggleModalEdit()"></button>
     </header>
     <section class="modal-card-body">
       <form *ngIf="selectedPet">
         <div class="field">
-          <label class="label">Nombre</label>
+          <label class="label">Nombre <span class="required-field">*</span></label>
           <input
             type="text"
             name="name"
@@ -104,7 +104,7 @@
             #nameInput="ngModel">
         </div>
         <div class="field">
-          <label class="label">Descripción</label>
+          <label class="label">Descripción <span class="required-field">*</span></label>
           <textarea
             class="textarea"
             name="description"
@@ -114,62 +114,73 @@
           </textarea>
         </div>
         <!-- image -->
-        <div class="field">
+        <div *ngIf="selectedPet.image.length">
+          <label class="label">Foto <span class="required-field">*</span></label>
+          <figure class="image is-64x64">
+            <img class="is-rounded" src="../../../../assets/img/{{ selectedPet.image }}" alt="Image" />
+          </figure>
+          <a class="button is-text" (click)="deleteFile()">Eliminar</a>
+        </div>
+        <div class="field" *ngIf="!selectedPet.image.length">
+          <label class="label">Foto  <span class="required-field">*</span></label>
           <div class="file is-link">
             <label class="file-label">
-              <input class="file-input form-control" type="file" name="photo" id="photo"/>
+              <input class="file-input form-control" required type="file" name="file" (change)="postMethod($event.target.files)"/>
               <span class="file-cta">
                 <span class="file-icon">
                   <i class="fas fa-upload"></i>
                 </span>
                 <span class="file-label">
-                  Foto
+                  Foto  <span class="required-field">*</span>
                 </span>
               </span>
             </label>
+            <span style="padding-left: 10px;">{{fileName}}</span>
           </div>
         </div>
         <div class="columns is-multiline is-vertical-center">
           <div class="field column is-full-mobile is-one-quarter-desktop">
-          <label class="label">Tipo</label>
+          <label class="label">Tipo <span class="required-field">*</span></label>
           <div class="control">
             <div class="select">
-              <select>
-                <option>Perro</option>
-                <option>Gato</option>
+              <select [(ngModel)]="selectedPet.type" #typeInput="ngModel" name="type">
+                <option value="dog">Perro</option>
+                <option value="cat">Gato</option>
               </select>
             </div>
           </div>
           </div>
           <div class="field column is-full-mobile is-one-quarter-desktop">
-            <label class="label">Tamaño</label>
+            <label class="label">Tamaño <span class="required-field">*</span></label>
             <div class="control">
               <div class="select">
-                <select>
-                  <option>Pequeño</option>
-                  <option>Mediano</option>
-                  <option>Grande</option>
+                <select [(ngModel)]="selectedPet.size" #sizeInput="ngModel" name="size">
+                  <option value="small">Pequeño</option>
+                  <option value="medium">Mediano</option>
+                  <option value="big">Grande</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="field column is-full-mobile is-one-quarter-desktop">
-            <label class="label">Zona</label>
+            <label class="label">Zona <span class="required-field">*</span></label>
             <div class="control">
               <div class="select">
-                <select>
-                  <option>Centro</option>
-                  <option>Zona Norte</option>
+                <select [(ngModel)]="selectedPet.district" #districtInput="ngModel" name="district">
+                  <option value="center">Centro</option>
+                  <option value="north">Norte</option>
+                  <option value="south">Sur</option>
                 </select>
               </div>
             </div>
           </div>
         </div>
+        <p class="required-field" style="padding-bottom: 10px;"> (*) Campos requeridos.</p>
       </form>
     </section>
     <footer class="modal-card-foot">
-      <button class="button" (click)="save()">Adoptado</button>
-      <button class="button is-primary" (click)="save()">Guardar</button>
+      <button class="button" (click)="adopted()">Adoptado</button>
+      <button [disabled]="selectedPet && !valid()" class="button is-primary" (click)="save()">Guardar</button>
     </footer>
   </div>
 </div>

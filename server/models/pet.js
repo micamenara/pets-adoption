@@ -14,6 +14,9 @@ const PetSchema = Schema({
     userAdoptId: String,
     dateAdopt: String,
     datePublished: String,
+    size: String,
+    type: String,
+    district: String,
 }, { timestamps: true });
 
 // 1: Centro, 2: Sur, 3: Norte

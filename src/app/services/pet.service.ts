@@ -33,4 +33,8 @@ export class PetService {
   adoptPet(petId: string, userAdoptId: string) {
     return this._http.put(`${this.apiUrl}/${petId}/user/${userAdoptId}`, {});
   }
+
+  update(pet:any) {
+    return this._http.put(`${this.apiUrl}/${pet._id}`, pet);
+  }
 }

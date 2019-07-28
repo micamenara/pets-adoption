@@ -4,7 +4,7 @@
     <!-- form -->
     <form action="" method="post" enctype="multipart/form-data">
       <div class="field">
-        <label class="label">Nombre</label>
+        <label class="label">Nombre <span class="required-field">*</span></label>
         <input
           type="text"
           name="name"
@@ -14,7 +14,7 @@
           #nameInput="ngModel">
       </div>
       <div class="field">
-        <label class="label">Descripción</label>
+        <label class="label">Descripción  <span class="required-field">*</span></label>
         <textarea
           class="textarea"
           name="description"
@@ -25,26 +25,28 @@
       </div>
       <!-- image -->
       <div class="field">
+        <label class="label">Foto  <span class="required-field">*</span></label>
         <div class="file is-link">
           <label class="file-label">
-            <input class="file-input form-control" type="file" name="file" (change)="postMethod($event.target.files)"/>
+            <input class="file-input form-control" required type="file" name="file" (change)="postMethod($event.target.files)"/>
             <span class="file-cta">
               <span class="file-icon">
                 <i class="fas fa-upload"></i>
               </span>
               <span class="file-label">
-                Foto
+                Foto  <span class="required-field">*</span>
               </span>
             </span>
           </label>
+          <span style="padding-left: 10px;">{{fileName}}</span>
         </div>
       </div>
       <div class="columns is-multiline is-vertical-center">
         <div class="field column is-full-mobile is-one-quarter-desktop">
-        <label class="label">Tipo</label>
+        <label class="label">Tipo  <span class="required-field">*</span></label>
         <div class="control">
           <div class="select">
-            <select [(ngModel)]="pet.type" #typeInput="ngModel" name="type">
+            <select [(ngModel)]="pet.type" #typeInput="ngModel" name="type" required>
               <option [ngValue]="'dog'">Perro</option>
               <option [ngValue]="'cat'">Gato</option>
             </select>
@@ -52,10 +54,10 @@
         </div>
         </div>
         <div class="field column is-full-mobile is-one-quarter-desktop">
-          <label class="label">Tamaño</label>
+          <label class="label">Tamaño  <span class="required-field">*</span></label>
           <div class="control">
             <div class="select">
-              <select [(ngModel)]="pet.size" #sizeInput="ngModel" name="size">
+              <select [(ngModel)]="pet.size" #sizeInput="ngModel" name="size" required>
                 <option [ngValue]="'small'">Pequeño</option>
                 <option [ngValue]="'medium'">Mediano</option>
                 <option [ngValue]="'big'">Grande</option>
@@ -64,19 +66,21 @@
           </div>
         </div>
         <div class="field column is-full-mobile is-one-quarter-desktop">
-          <label class="label">Zona</label>
+          <label class="label">Zona  <span class="required-field">*</span></label>
           <div class="control">
             <div class="select">
-              <select [(ngModel)]="pet.district" #districtInput="ngModel" name="district">
+              <select [(ngModel)]="pet.district" #districtInput="ngModel" name="district" required>
                 <option [ngValue]="'center'">Centro</option>
-                <option [ngValue]="'north'">Zona Norte</option>
+                <option [ngValue]="'north'">Norte</option>
+                <option [ngValue]="'south'">Sur</option>
               </select>
             </div>
           </div>
         </div>
       </div>
     </form>
-    <button style="margin-top: 1rem" class="button is-primary" (click)="processForm()">Guardar</button>
+    <p class="required-field" style="padding-bottom: 10px;"> (*) Campos requeridos.</p>
+    <button [disabled]="!valid()" style="margin-top: 1rem" class="button is-primary" (click)="processForm()">Guardar</button>
     <!-- //form -->
   </div>
   <div class="modal modalHuellitas" [ngClass]="{ 'is-active' : isModalActive }">

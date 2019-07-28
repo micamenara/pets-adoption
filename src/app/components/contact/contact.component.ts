@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AdoptionRequestService } from '../../services/adoption-request.service';
 import { IAdoptionRequest } from '../../interfaces/adoptionRequest';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -23,6 +25,7 @@ export class ContactComponent implements OnInit {
   });
 
   constructor(
+    private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _adoptionRequestService: AdoptionRequestService,
     private _userService: UserService
@@ -45,6 +48,7 @@ export class ContactComponent implements OnInit {
 
   toggleModal() {
     this.isModalActive = !this.isModalActive;
+    this._router.navigate(['/pets']);
   }
 
   processForm() {

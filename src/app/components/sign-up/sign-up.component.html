@@ -6,6 +6,7 @@
 
       <!-- name -->
       <div class="field">
+        <label class="label">Nombre <span class="required-field">*</span></label>
         <input
           type="text"
           name="name"
@@ -18,6 +19,7 @@
 
       <!-- lastname -->
       <div class="field">
+        <label class="label">Apellido <span class="required-field">*</span></label>
         <input
           type="text"
           name="lastname"
@@ -30,6 +32,7 @@
 
       <!-- image -->
       <div class="field">
+        <label class="label">Foto <span class="required-field">*</span></label>
         <div class="file is-link">
           <label class="file-label">
             <input class="file-input form-control" type="file" name="file" (change)="postMethod($event.target.files)"/>
@@ -42,10 +45,12 @@
               </span>
             </span>
           </label>
+          <span style="padding-left: 10px;">{{fileName}}</span>
         </div>
       </div>
       <!-- email -->
       <div class="field">
+        <label class="label">Email <span class="required-field">*</span></label>
         <input
           type="email"
           name="email"
@@ -59,6 +64,7 @@
 
       <!-- password -->
       <div class="field">
+        <label class="label">Contraseña <span class="required-field">*</span></label>
         <input
           type="password"
           pattern=".{6,}"
@@ -72,6 +78,7 @@
 
       <!-- tel -->
       <div class="field">
+        <label class="label">Teléfono <span class="required-field">*</span></label>
         <input
           type="text"
           name="tel"
@@ -85,6 +92,7 @@
 
       <!-- biography -->
       <div class="field">
+        <label class="label">Biografía</label>
         <textarea
           class="textarea"
           name="biography"
@@ -92,8 +100,8 @@
           [(ngModel)]="user.bio"
           #messageInput="ngModel"></textarea>
       </div>
-
-      <button type="submit" class="button is-primary is-outlined">Crear</button>
+      <p class="required-field" style="padding-bottom: 10px;"> (*) Campos requeridos.</p>
+      <button [disabled]="!valid()" type="submit" class="button is-primary is-outlined">Crear cuenta</button>
 
     </form>
     <!-- //form -->

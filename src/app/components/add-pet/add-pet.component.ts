@@ -14,6 +14,7 @@ export class AddPetComponent implements OnInit {
   public pet: any;
   public isModalActive = false;
   public file;
+  public fileName;
 
   constructor(
     private _petService: PetService,
@@ -64,6 +65,16 @@ export class AddPetComponent implements OnInit {
   postMethod(files: FileList) {
     const fileToUpload = files.item(0);
     this.file = new FormData();
+    this.fileName = fileToUpload.name;
     this.file.append('file', fileToUpload, fileToUpload.name);
+  }
+  
+  valid() {
+    return this.pet.name.length &&
+      this.pet.description.length &&
+      this.pet.district.length &&
+      this.pet.type.length &&
+      this.pet.size.length &&
+      this.file
   }
 }

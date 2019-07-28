@@ -5,7 +5,7 @@
 <section class="section">
   <div class="container is-fluid">
     <div class="pets-header">
-      <a [routerLink]="'add-pet'" class="is-primary is-outlined is-fullwidth">
+      <a [routerLink]="'add-pet'" class="is-primary is-outlined is-fullwidth" *ngIf="userLogged">
         <i class="fas fa-plus"></i>
         Cargar mascota
       </a>
@@ -16,9 +16,10 @@
         <label class="label">Tipo</label>
         <div class="control">
           <div class="select">
-            <select>
-              <option>Perro</option>
-              <option>Gato</option>
+            <select [(ngModel)]="filters.type" #typeInput="ngModel" name="type">
+              <option value="all" selected>Todos</option>
+              <option value="dog">Perro</option>
+              <option value="cat">Gato</option>
             </select>
           </div>
         </div>
@@ -27,10 +28,11 @@
         <label class="label">Tamaño</label>
         <div class="control">
           <div class="select">
-            <select>
-              <option>Pequeño</option>
-              <option>Mediano</option>
-              <option>Grande</option>
+            <select [(ngModel)]="filters.size" #sizeInput="ngModel" name="size">
+              <option value="all" selected>Todos</option>
+              <option value="small">Pequeño</option>
+              <option value="medium">Mediano</option>
+              <option value="big">Grande</option>
             </select>
           </div>
         </div>
@@ -39,22 +41,24 @@
         <label class="label">Zona</label>
         <div class="control">
           <div class="select">
-            <select>
-              <option>Centro</option>
-              <option>Zona Norte</option>
+            <select [(ngModel)]="filters.district" #districtInput="ngModel" name="district">
+              <option value="all" selected>Todas</option>
+              <option value="center">Centro</option>
+              <option value="north">Norte</option>
+              <option value="south">Sur</option>
             </select>
           </div>
         </div>
       </div>
       <div class="field column is-full-mobile is-one-quarter-desktop">
-        <button class="button is-primary">Buscar</button>
+        <button class="button is-primary" (click)="applyFilters()">Buscar</button>
       </div>
     </div>
     <div class="notification" *ngIf="!userLogged">
       Para adoptar debe estar registrado.
     </div>
     <div class="columns is-multiline">
-      <div class="column is-full-mobile is-half-tablet is-one-third-desktop" *ngFor="let pet of pets">
+      <div class="column is-full-mobile is-half-tablet is-one-third-desktop" *ngFor="let pet of filteredPets">
         <div class="box">
           <article class="media">
             <div class="media-left">
@@ -75,6 +79,7 @@
                   <br />
                   <time>{{pet.createdAt | date: 'shortDate'}} - {{pet.createdAt | date: 'shortTime'}}</time>
                 </p>
+                <a *ngIf="userLogged && userLogged._id == pet.userId" routerLink="/users/{{ userLogged._id }}" class="has-text-danger">Ver publicaciones</a>
                 <a *ngIf="userLogged && userLogged._id != pet.userId" [routerLink]="'contact'" [queryParams]="{pet: pet._id, name: pet.name}" class="button is-primary is-outlined">Contactar</a>
               </div>
             </div>
@@ -82,7 +87,9 @@
         </div>
       </div>
     </div>
+    <div class="notification" *ngIf="!filteredPets?.length && pets?.length">
+      No hay mascotas con los filtros aplicados.
+    </div>
   </div>
-
 </section>
 

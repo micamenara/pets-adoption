@@ -10,8 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-  public user = {} as IUser;
+  public user = {
+    name: '',
+    lastname: '',
+    email: '',
+    password: '',
+    tel: ''
+  } as IUser;
   public file;
+  public fileName;
 
   constructor(
     private _fileService: FileService,
@@ -47,6 +54,16 @@ export class SignUpComponent implements OnInit {
   postMethod(files: FileList) {
     const fileToUpload = files.item(0);
     this.file = new FormData();
+    this.fileName = fileToUpload.name;
     this.file.append('file', fileToUpload, fileToUpload.name);
+  }
+
+  valid() {
+    return this.user.name.length &&
+      this.user.lastname.length &&
+      this.user.tel.length &&
+      this.file &&
+      this.user.email.length &&
+      this.user.password.length
   }
 }

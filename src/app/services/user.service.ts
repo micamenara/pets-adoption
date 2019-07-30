@@ -43,6 +43,12 @@ export class UserService {
     });
   }
 
+  validate(email: string): any {
+    return this._http.post(`${this.apiUrl}/validate`, {
+      email: email
+    });
+  }
+
   create(user: IUser) {
     return this._http.post(`${this.apiUrl}`, user);
   }

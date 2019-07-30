@@ -44,6 +44,7 @@ export class ContactComponent implements OnInit {
     this.isModalActive = false;
     this.canGenerateContact = false;
     this.contactForm.setValidators(this.contactFormValidation());
+    this.contactForm.controls['phone'].setValue(this._userService.getUserLoggedIn().tel); 
   }
 
   toggleModal() {

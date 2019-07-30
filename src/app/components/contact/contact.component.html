@@ -5,7 +5,7 @@
     <form [formGroup]="contactForm" (ngSubmit)="processForm()">
 
       <!-- phone -->
-      <label class="label">Número de teléfono:</label>
+      <label class="label">Número de teléfono <span class="required-field">*</span></label>
       <div class="field">
         <input
           type="text"
@@ -20,7 +20,7 @@
       </div>
 
       <!-- Facebook -->
-      <label class="label">Link a perfil de Facebook:</label>
+      <label class="label">Link a perfil de Facebook</label>
       <div class="field">
         <input
           type="text"
@@ -31,7 +31,7 @@
       </div>
 
       <!-- message -->
-      <label class="label">Describe porque estas interesado en adoptar esta mascota:</label>
+      <label class="label">Describe porque estas interesado en adoptar esta mascota <span class="required-field">*</span></label>
       <div class="field">
         <textarea
           class="textarea"

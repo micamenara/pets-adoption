@@ -9,6 +9,9 @@
         <i class="fas fa-plus"></i>
         Cargar mascota
       </a>
+      <div class="notification" *ngIf="!userLogged">
+        Para adoptar debe estar registrado.
+      </div>
       <h1 class="title">Filtros de búsqueda</h1>
     </div>
     <div class="columns is-multiline is-vertical-center">
@@ -53,9 +56,6 @@
       <div class="field column is-full-mobile is-one-quarter-desktop">
         <button class="button is-primary" (click)="applyFilters()">Buscar</button>
       </div>
-    </div>
-    <div class="notification" *ngIf="!userLogged">
-      Para adoptar debe estar registrado.
     </div>
     <div class="columns is-multiline">
       <div class="column is-full-mobile is-half-tablet is-one-third-desktop" *ngFor="let pet of filteredPets">

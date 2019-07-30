@@ -1,6 +1,6 @@
 <nav class="navbar is-primary is-fixed-top">
   <div class="navbar-brand">
-    <a class="navbar-item" href="#">
+    <a class="navbar-item" [routerLink]="''">
       <img src="../../../assets/img/dog.png" alt="company logo">
     </a>
     <span class="navbar-item navbar-brand-name">Huellitas</span>
@@ -22,10 +22,10 @@
       <div class="navbar-item">
         <div class="buttons">
           <a *ngIf="!user" class="button is-primary" [routerLink]="'sign-up'">
-            Sign up
+            Registrarse
           </a>
           <a *ngIf="!user" class="button is-primary" (click)="toggleModal()">
-            Log in
+            Iniciar sesión
           </a>
           <a *ngIf="user && user._id" class="button is-primary" routerLink="/users/{{ user._id }}">
             Mi perfil<i class="fas fa-paw"></i></a>

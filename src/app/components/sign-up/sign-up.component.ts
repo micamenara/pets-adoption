@@ -19,6 +19,7 @@ export class SignUpComponent implements OnInit {
   } as IUser;
   public file;
   public fileName;
+  public emailExist: boolean = false;
 
   constructor(
     private _fileService: FileService,
@@ -32,10 +33,16 @@ export class SignUpComponent implements OnInit {
 
 
   processForm() {
-    this.file ? this._fileService.uploadFile(this.file).subscribe(val => {
-      this.user.image = val.filename;
-      this.create();
-    }) : this.create();
+    this._userService.validate(this.user.email).subscribe(res => {
+      if (res.length) {
+        this._generalService.showMessage('El email ya esta registrado.');
+      } else {
+        this.file ? this._fileService.uploadFile(this.file).subscribe(val => {
+          this.user.image = val.filename;
+          this.create();
+        }) : this.create();
+      }
+    })
   }
 
   create() {

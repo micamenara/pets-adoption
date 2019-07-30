@@ -29,6 +29,17 @@ const getAll = (req, res) => {
   });
 };
 
+const validateEmail = (req, res) => {
+  User.find({email: req.body.email}, function(err, user) {
+    if (err) {
+      return res.status(500).send({ message: "Error in the request", err });
+    }
+    if (user) {
+      res.send(user);
+    }
+  });
+}
+
 const createUser = (req, res) => {
   const user = new User({
     name: req.body.name,
@@ -49,7 +60,6 @@ const createUser = (req, res) => {
 };
 
 const logIn = (req, res) => {
-
   User.find({
     email: req.body.email,
     password: req.body.password}, function(err, user) {
@@ -62,4 +72,4 @@ const logIn = (req, res) => {
   });
 }
 
-module.exports = { getUser, createUser, getAll, logIn };
+module.exports = { getUser, createUser, getAll, logIn, validateEmail };

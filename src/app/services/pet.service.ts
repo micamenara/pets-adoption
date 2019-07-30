@@ -26,7 +26,7 @@ export class PetService {
     return this._http.get(`${this.apiUrl}/adopted/${userId}`);
   }
 
-  createPet(pet: any) {
+  createPet(pet: any): Observable<any>  {
     return this._http.post(`${this.apiUrl}`, pet);
   }
 
